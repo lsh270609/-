@@ -1,25 +1,28 @@
+import java.util.*;
+
 class Solution {
     boolean solution(String s) {
         boolean answer = true;
         
-        int openCnt = 0, closeCnt = 0;
-        
-        for (int i = 0; i < s.length(); i++ ) {
+        Stack<Integer> stack = new Stack<Integer>();
+        for (int i = 0; i < s.length(); i++) {
+        	
         	if(s.charAt(i) == '(') {
-        		openCnt++;
-        	} else if(s.charAt(i) == ')') {
-        		closeCnt++;
+        		stack.push(0);
         	}
-        	if(openCnt < closeCnt) {
-        		answer = false;
-        		break;
+        	if(s.charAt(i) == ')') {
+        		if(stack.isEmpty()) {
+        			answer = false;
+        			break;
+        		}
+        		stack.pop();
         	}
         }
         
-        if(!(openCnt == closeCnt)) {
-        	answer = false;
-        }
-
+        if(!stack.isEmpty()) {
+			answer = false;
+		}
+        
         return answer;
     }
 }
