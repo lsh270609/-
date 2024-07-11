@@ -26,9 +26,7 @@ class Solution {
 			} else if (queue1.peek().equals(queue2.peek())) {
 				queue1.poll();
 				queue2.poll();
-			} else {
-				return 0;
-			}
+			} else return 0;
 		}
 		return 1;
 	}
