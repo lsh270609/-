@@ -2,13 +2,12 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] fees, String[] records) {
-        ArrayList<String> recordList = new ArrayList<>(Arrays.asList(records));        
         HashMap<String, ArrayList<Integer>> map = new HashMap<>(); 
         ArrayList<Integer> tmp = new ArrayList<>();
         for(int i = 0; i < 3; i++){
             tmp.add(0);
         }
-        for(String record : recordList) {
+        for(String record : records) {
             String str = record.substring(6, 10);
             int time = Integer.parseInt(record.substring(0, 2)) * 60 + Integer.parseInt(record.substring(3, 5));
             ArrayList<Integer> list = map.getOrDefault(str, new ArrayList<Integer>(tmp));
