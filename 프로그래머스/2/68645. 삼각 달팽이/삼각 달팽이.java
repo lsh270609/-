@@ -1,10 +1,6 @@
 class Solution {
     public int[] solution(int n) {
-        int nf = 0;
-        for (int i = 1; i <= n; i++) {
-            nf += i;
-        }
-        int[] answer = new int[nf];
+        int[] answer = new int[n * (n + 1) / 2];
         int[][] arr = new int[n + 1][n];
         int row = 0, col = 0, timing = 0, number = 0;
         int tmpN = n;
