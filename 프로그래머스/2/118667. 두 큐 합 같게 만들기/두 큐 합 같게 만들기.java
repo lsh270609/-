@@ -14,7 +14,7 @@ class Solution {
             sum2 += i;
         }
 
-        for (int i = 0; i < (queue1.length + queue2.length) * 2; i++) {
+        for (int i = 0; i < queue1.length * 3 - queue1.length / 2; i++) {
             if (sum1 > sum2) {
                 int x = q1.poll();
                 q2.offer(x);
