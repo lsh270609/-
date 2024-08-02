@@ -2,25 +2,21 @@ import java.util.*;
 
 class Solution {
     public String solution(String number, int k) {
-        StringBuilder answer = new StringBuilder();
         int len = number.length();
-        int n = len - k;
-        int[] arr = new int[len];
-        String[] tmp = number.split("");
+        char[] result = new char[len - k];
+        Stack<Character> stack = new Stack<>();
+
         for (int i = 0; i < len; i++) {
-            arr[i] = Integer.parseInt(tmp[i]);
-        }
-
-        int baseIdx = 0;
-        for (int i = 1; i <= n; i++) {
-            int maxIdx = baseIdx;
-            for (int j = baseIdx; j < len - (n - i); j++) {
-                if (arr[j] > arr[maxIdx]) maxIdx = j;
+            char c = number.charAt(i);
+            while (!stack.isEmpty() && stack.peek() < c && k-- > 0) {
+                stack.pop();
             }
-            answer.append(arr[maxIdx]);
-            baseIdx = maxIdx + 1;
+            stack.push(c);
         }
-
-        return answer.toString();
+        for (int i = 0; i < result.length; i++) {
+            result[i] = stack.get(i);
+        }
+        
+        return new String(result);
     }
 }
