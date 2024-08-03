@@ -5,16 +5,6 @@ class Solution {
         int num1 = 0, num2 = 0;
 
         while (storey > 0) {
-            int pos = (int) Math.log10(storey);
-            if (pos > 1) {
-                int pow = (int) Math.pow(10, pos);
-                if (storey % pow == 0) {
-                    num1 = storey / pow;
-                    storey = round(storey, num1, 0, pow);
-                    continue;
-                }
-            }
-            
             num1 = storey % 10;
             num2 = (storey / 10) % 10;
             storey = round(storey, num1, num2, 10);
