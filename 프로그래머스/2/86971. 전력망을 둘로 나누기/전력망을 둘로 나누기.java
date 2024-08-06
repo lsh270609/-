@@ -27,7 +27,7 @@ class Solution {
             map.get(v1).remove(Integer.valueOf(v2));
             map.get(v2).remove(Integer.valueOf(v1));
 
-            int cnt = dfs(1, visited);
+            int cnt = dfs(v1, visited);
             int d = Math.abs(cnt - (n - cnt));
             answer = Math.min(answer, d);
 
