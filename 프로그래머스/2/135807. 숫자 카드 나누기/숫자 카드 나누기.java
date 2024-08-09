@@ -42,8 +42,15 @@ class Solution {
     
     public ArrayList<Integer> divisor(int num) {
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 2; i <= num; i++) {
-            if (num % i == 0) list.add(i);
+        if (num < 4) {
+            for (int i = 2; i < num; i++) {
+                list.add(i);
+            }
+        } else {
+            for (int i = 2; i <= num / 2; i++) {
+                if (num % i == 0) list.add(i);
+            }
+            list.add(num);
         }
         
         return list;
