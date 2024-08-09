@@ -12,7 +12,8 @@ class Solution {
     }
     
     public int crossCheck(int[] array1, int[] array2) {
-        int gcd1 = gcd(array1);
+        int gcd1 = primeCheck(array1);
+        // int gcd1 = gcd(array1);
         if (gcd1 == 0) return 0;
         for (int i : array2) {
             if (i % gcd1 == 0) return 0;
@@ -54,5 +55,32 @@ class Solution {
         }
         
         return list;
+    }
+    
+    public int primeCheck(int[] array) {
+        int num = array[0];
+        if (isPrime(num)) { // 초항이 소수일 경우
+            for (int i : array) {
+                if (i % num != 0) return 0; // 초항이 소수이지만 그 이후 수 중 하나가 초항으로 나누어지지 않음 - gcd x
+            }
+        } else { // 아닌 경우
+            boolean flag = false;
+            for (int i = 1; i < array.length; i++) {
+                flag = isPrime(array[i]);
+                if (flag) break; // 중간에 소수 있음 - gcd x
+            }
+            if (!flag) num = gcd(array); // 초항이 소수도 아니고 중간에 소수도 없는 경우
+            else return 0;
+        }
+        
+        return num;
+    }
+    
+    public boolean isPrime(int num) {
+        if (num == 2 || num == 3) return true;
+        for (int i = 2; i <= (int) Math.sqrt(num); i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
     }
 }
