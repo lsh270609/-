@@ -2,19 +2,19 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] arrayA, int[] arrayB) {
+        int intA = 0, intB = 0;
         Arrays.sort(arrayA);
         Arrays.sort(arrayB);
         if (arrayA[0] == 1 && arrayB[0] == 1) return 0;
-        int intA = crossCheck(arrayA, arrayB);
-        int intB = crossCheck(arrayB, arrayA);
+        if (arrayA[0] != 1) intA = crossCheck(arrayA, arrayB);
+        if (arrayB[0] != 1) intB = crossCheck(arrayB, arrayA);
         
         return intA == 0 && intB == 0 ? 0 : Math.max(intA, intB);
     }
     
     public int crossCheck(int[] array1, int[] array2) {
         int gcd1 = primeCheck(array1);
-        // int gcd1 = gcd(array1);
-        if (gcd1 == 0) return 0;
+        if (gcd1 == 1) return 0;
         for (int i : array2) {
             if (i % gcd1 == 0) return 0;
         }
@@ -30,7 +30,7 @@ class Solution {
             if (flag) return divisor;
         }
         
-        return 0;
+        return 1;
     }
     
     public boolean divisible(int[] array, int num) {
@@ -59,18 +59,18 @@ class Solution {
     
     public int primeCheck(int[] array) {
         int num = array[0];
-        if (isPrime(num)) { // 초항이 소수일 경우
+        if (isPrime(num)) {
             for (int i : array) {
-                if (i % num != 0) return 0; // 초항이 소수이지만 그 이후 수 중 하나가 초항으로 나누어지지 않음 - gcd x
+                if (i % num != 0) return 1;
             }
-        } else { // 아닌 경우
+        } else {
             boolean flag = false;
             for (int i = 1; i < array.length; i++) {
                 flag = isPrime(array[i]);
-                if (flag) break; // 중간에 소수 있음 - gcd x
+                if (flag) break;
             }
-            if (!flag) num = gcd(array); // 초항이 소수도 아니고 중간에 소수도 없는 경우
-            else return 0;
+            if (!flag) num = gcd(array);
+            else return 1;
         }
         
         return num;
