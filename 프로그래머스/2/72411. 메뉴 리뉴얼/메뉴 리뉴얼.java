@@ -59,10 +59,10 @@ class Solution {
     }
     
     public void Combination(String str, int len, int idx, int cnt, String[] arr, boolean[] flag, int[] course) {
-        if (CourseCheck(course, cnt)) {
-            map.put(str, map.getOrDefault(str, 0) + 1);
-        }
         if (cnt <= max) {
+            if (CourseCheck(course, cnt)) {
+                map.put(str, map.getOrDefault(str, 0) + 1);
+            }
             for (int i = idx; i < len; i++) {
                 if (flag[i]) continue;
                 flag[i] = true;
