@@ -3,10 +3,10 @@ import java.util.*;
 class Solution {
 	public int solution(int N, int[][] road, int K) {
         int answer = 1;
-		long[][] roadMap = new long[N + 1][N + 1];
+		int[][] roadMap = new int[N + 1][N + 1];
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j <= N; j++) {
-                if (i != j) roadMap[i][j] = Integer.MAX_VALUE;
+                if (i != j) roadMap[i][j] = 500000;
             }
         }
         
