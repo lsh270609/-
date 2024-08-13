@@ -7,6 +7,7 @@ class Solution {
     public int row;
     public int col;
     public int sum;
+    public Queue<Integer> queue;
     
     public int[] solution(String[] maps) {
         int[] answer;
@@ -50,29 +51,28 @@ class Solution {
     public int add(int currentRow, int currentCol) {
         sum = arr[currentRow][currentCol];
         flag[currentRow][currentCol] = true;
-        Queue<Integer> queue = new LinkedList<>();
+        queue = new LinkedList<>();
         queue.offer(currentRow);
         queue.offer(currentCol);
         while (!queue.isEmpty()) {
             int R = queue.poll();
             int C = queue.poll();
-            queue = offer(queue, R + 1, C);
-            queue = offer(queue, R - 1, C);
-            queue = offer(queue, R, C + 1);
-            queue = offer(queue, R, C - 1);
+            offer(R + 1, C);
+            offer(R - 1, C);
+            offer(R, C + 1);
+            offer(R, C - 1);
         }
         
         return sum;
     }
     
-    public Queue<Integer> offer(Queue<Integer> queue, int R, int C) {
+    public void offer(int R, int C) {
         if (!outOfRange(R, C) && isNotIsland(R, C) && !flag[R][C]) {
             flag[R][C] = true;
             sum += arr[R][C];
             queue.offer(R);
             queue.offer(C);
         }
-        return queue;
     }
     
     public boolean outOfRange(int R, int C) {
